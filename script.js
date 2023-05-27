@@ -35,3 +35,13 @@ function operate(num1, operator, num2){
             break;
     }
 }
+let displayContent = "";
+const numbers = document.querySelectorAll(".num");
+numbers.forEach(function(number){
+    number.addEventListener("click", function(e){
+        // console.log(e.target.textContent);
+        displayContent += e.target.textContent;
+        const displayText = document.querySelector("#display");
+        displayText.textContent = displayContent;
+    })
+})
