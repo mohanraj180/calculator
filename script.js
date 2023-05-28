@@ -14,34 +14,35 @@ function divide(a, b){
     return a / b;
 }
 
-let num1, num2, operator;
 
-function operate(num1, operator, num2){
-    switch (operator) {
+function operate(a, operator, b){
+switch (operator) {
         case "+":
-            add(num1, num2)
+            add(a, b)
             break;
     
         case "-":
-            subtract(num1, num2)
+            subtract(a, b)
             break;
     
         case "*":
-            multiply(num1, num2)
+            multiply(a, b)
             break;
     
         case "/":
-            divide(num1, num2)
+            divide(a, b)
             break;
+        }
     }
-}
-let displayContent = "";
-const numbers = document.querySelectorAll(".num");
-numbers.forEach(function(number){
-    number.addEventListener("click", function(e){
-        // console.log(e.target.textContent);
-        displayContent += e.target.textContent;
-        const displayText = document.querySelector("#display");
-        displayText.textContent = displayContent;
+    
+    function display(e){
+        const display = document.querySelector("#display");
+        display.textContent += e.target.textContent;
+    }
+    
+    let num1, num2, operator;
+
+    const numbers = document.querySelectorAll(".num");
+    numbers.forEach(function(number){
+        number.addEventListener("click", (e) => display(e));
     })
-})
