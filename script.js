@@ -82,9 +82,11 @@ switch (operator) {
         let input = display.textContent;
         let operatorIndex = getOperatorIndex(input);
         operator = input.slice(operatorIndex, operatorIndex + 1);
-        num1 = input.slice(0, operatorIndex);
-        num2 = input.slice(operatorIndex + 1, input.length - 1);
+        num1 = parseInt(input.slice(0, operatorIndex));
+        num2 = parseInt(input.slice(operatorIndex + 1, input.length - 1));
 
+        // dispplay result
+        display.textContent = operate(num1, operator, num2);
 
     })
 
