@@ -18,20 +18,16 @@ function divide(a, b){
 function operate(a, operator, b){
 switch (operator) {
         case "+":
-            add(a, b)
-            break;
+            return add(a, b)
     
         case "-":
-            subtract(a, b)
-            break;
+            return subtract(a, b)
     
         case "*":
-            multiply(a, b)
-            break;
+            return multiply(a, b)
     
         case "/":
-            divide(a, b)
-            break;
+            return divide(a, b)
         }
     }
     
@@ -82,10 +78,14 @@ switch (operator) {
         const display = document.querySelector("#display");
         display.textContent += e.target.textContent;
         
+        // get operands and operator values
         let input = display.textContent;
         let operatorIndex = getOperatorIndex(input);
         operator = input.slice(operatorIndex, operatorIndex + 1);
-        console.log(operator);
+        num1 = input.slice(0, operatorIndex);
+        num2 = input.slice(operatorIndex + 1, input.length - 1);
+
+
     })
 
 // let s = "123+456";
