@@ -33,29 +33,33 @@ switch (operator) {
     
     function display(e){
         const display = document.querySelector("#display");
+
+        if(operator !== "") {
+            display.textContent = ""
+        }
         display.textContent += e.target.textContent;
     }
 
-    function getOperatorIndex(str){
-        switch (true) {
-            case str.includes("+"):
-                return str.indexOf("+")
-        
-            case str.includes("-"):
-                return str.indexOf("-")
-        
-            case str.includes("*"):
-                return str.indexOf("*")
-        
-            case str.includes("/"):
-                return str.indexOf("/")
-        }
-        
-    }
+    
     
     function addOperator(e){
         const display = document.querySelector("#display");
-        display.textContent += e.target.textContent;
+
+        if(num1 !== 0) {
+            num2 = parseInt(display.textContent);
+            console.log(`num2 = ${num2}`);
+            display.textContent = operate(num1, operator, num2);
+            num1 = parseInt(display.textContent);
+            console.log(`num1 = ${num1}`);
+        }else {
+            num1 = parseInt(display.textContent);
+            console.log(`num1 = ${num1}`);
+        }
+
+        operator = e.target.textContent;
+        console.log(`current operator = ${operator}`);
+        
+
     }
     
     let num1 = 0, num2 = 0, operator ="";
@@ -69,22 +73,19 @@ switch (operator) {
     // listen operators
     const operatorButtons = document.querySelectorAll(".operator");
     operatorButtons.forEach(function(operator){
-        operator.addEventListener("click", (e) => addOperator(e))
+        operator.addEventListener("click", (e) => {
+            addOperator(e);
+
+        })
     });
 
     // listen equals
     const equals = document.querySelector("#equals");
     equals.addEventListener("click", (e) => {
         const display = document.querySelector("#display");
-        display.textContent += e.target.textContent;
+        num2 = parseInt(display.textContent);
+        console.log(`num2 = ${num2}`);
         
-        // get operands and operator values
-        let input = display.textContent;
-        let operatorIndex = getOperatorIndex(input);
-        operator = input.slice(operatorIndex, operatorIndex + 1);
-        num1 = parseInt(input.slice(0, operatorIndex));
-        num2 = parseInt(input.slice(operatorIndex + 1, input.length - 1));
-
         // dispplay result
         display.textContent = operate(num1, operator, num2);
 
